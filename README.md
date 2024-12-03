@@ -68,8 +68,8 @@ dataset/
     img1.jpg
     img2.jpg
   annotations/
-     img1.xml
-     img2.xml
+    img1.xml
+    img2.xml
 ```
       
 ### 4. Dataset Class
