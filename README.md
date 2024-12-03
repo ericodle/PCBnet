@@ -59,9 +59,9 @@ pip3 install -r requirements.txt
 ## Workflow
 
 ### 1. Annotate Images with LabelImg
-  - Install using pip
-  ```pip install labelImg
-  ```
+```
+pip install labelImg
+```
 
 
 ### 2. Parse the annotations to extract:
