@@ -5,7 +5,7 @@ resnet-based tool for analyzing PCBs
 <br />
 <div align="center">
   <a href="https://github.com/github_username/repo_name">
-    <img src="img/planktonet_logo.png" width="350" title="logo">
+    <img src="img/logo.png" width="350" title="logo">
   </a>
 
 <h3 align="center">PCB analyzer </h3>
