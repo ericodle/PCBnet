@@ -7,7 +7,6 @@ resnet-based tool for analyzing PCBs
 
 <h3 align="center">PCB analyzer </h3>
 
-<!-- ABOUT THE PROJECT -->
 ## About this Project
 
 coming soon
@@ -31,10 +30,6 @@ If the first number is not a 3, update to Python3.
 Download to your computer. 
 
 ### Step 2: Create a virtual environment: 
-The default size limit on PyPI is 60MB.
-Therefore, we will have to take the **virtual environment** route.
-
-Create a virtual environment called *env* inside the working directory.
 
 ```sh
 python3 -m venv env
@@ -49,13 +44,10 @@ source env/bin/activate
 
 ### Step 3: Install requirements.txt
 
-Avoid "dependency hell" by installing specific software versions known to work well together.
-
   ```sh
 pip3 install -r requirements.txt
   ```
 
-<!-- LICENSE -->
 ## Workflow
 
 ### 1. Annotate Images with LabelImg
@@ -70,7 +62,7 @@ pip install labelImg
 
 
 ### 3. Organize Dataset:
-      ```
+```
       dataset/
         images/
           img1.jpg
@@ -78,7 +70,7 @@ pip install labelImg
         annotations/
           img1.xml
           img2.xml
-      ```
+```
       
 ### 4. Dataset Class
 
