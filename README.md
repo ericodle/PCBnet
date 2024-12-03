@@ -63,13 +63,13 @@ pip install labelImg
 
 ### 3. Organize Dataset:
 ```
-      dataset/
-        images/
-          img1.jpg
-          img2.jpg
-        annotations/
-          img1.xml
-          img2.xml
+dataset/
+  images/
+    img1.jpg
+    img2.jpg
+  annotations/
+     img1.xml
+     img2.xml
 ```
       
 ### 4. Dataset Class
