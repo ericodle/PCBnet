@@ -3,7 +3,7 @@ resnet-based tool for analyzing PCBs
 
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
+<div align="left">
   <a href="https://github.com/github_username/repo_name">
     <img src="img/logo.png" width="350" title="logo">
   </a>
