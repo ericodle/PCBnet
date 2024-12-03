@@ -61,18 +61,18 @@ pip3 install -r requirements.txt
 <!-- LICENSE -->
 ## Workflow
 
-1. Annotate Images with LabelImg
+### 1. Annotate Images with LabelImg
   - Install using pip
   ```pip install labelImg
   ```
 
 
-2. Parse the annotations to extract:
+### 2. Parse the annotations to extract:
  - Bounding boxes: [xmin, ymin, xmax, ymax]
  - Labels: Class IDs.
 
 
-3. Organize Dataset:
+### 3. Organize Dataset:
       ```
       dataset/
         images/
@@ -83,7 +83,7 @@ pip3 install -r requirements.txt
           img2.xml
       ```
       
-4. Dataset Class
+### 4. Dataset Class
 
 ```
 import os
@@ -136,7 +136,7 @@ class PcbDataset(torch.utils.data.Dataset):
         return image, target
 ```
 
-5. Model Architecture
+### 5. Model Architecture
 ```
 import torch
 import torch.nn as nn
@@ -176,7 +176,7 @@ class ResNetObjectDetector(nn.Module):
 ```
 
 
-6. Training Loop
+### 6. Training Loop
   ```
   # Define loss functions
   cls_loss_fn = nn.CrossEntropyLoss()
@@ -207,7 +207,7 @@ class ResNetObjectDetector(nn.Module):
       print(f"Epoch {epoch+1}, Loss: {loss.item():.4f}")
   ```
 
-7. Inference
+### 7. Inference
 
 ```
 from torchvision.ops import nms
