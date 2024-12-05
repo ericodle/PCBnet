@@ -102,9 +102,9 @@ if __name__ == "__main__":
 
     # Hyperparameters
     num_classes = 7 + 1  # Add 1 for background class
-    batch_size = 4
-    num_epochs = 10
-    learning_rate = 1e-4
+    batch_size = 1
+    num_epochs = 300
+    learning_rate = 1e-6
 
     # Prepare data loaders
     train_loader = prepare_dataloaders(train_image_dir, train_annotation_dir, batch_size)
@@ -117,6 +117,5 @@ if __name__ == "__main__":
     model = train_model(model, train_loader, device, num_epochs, learning_rate)
 
     # Save the model
-    torch.save(model.state_dict(), "faster_rcnn_resnet18.pth")
-    print("Model saved as 'faster_rcnn_resnet18.pth'")
-
+    torch.save(model.state_dict(), "faster_rcnn_resnet50.pth")
+    print("Model saved as 'faster_rcnn_resnet50.pth'")
