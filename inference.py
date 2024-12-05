@@ -49,27 +49,34 @@ def transform_image(image):
     return transform(image).unsqueeze(0)
 
 # Function to visualize the detections
-def visualize(image, boxes, labels, scores, score_threshold=0.3):
+def visualize(image, boxes, labels, scores, score_threshold=0.01):
     draw = ImageDraw.Draw(image)
     
+    # Load a font with a larger size
+    try:
+        font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 48)  # Change the path and size as needed
+    except IOError:
+        font = ImageFont.load_default()  # Fall back to default font if custom font fails
+
     for box, label, score in zip(boxes, labels, scores):
         if score > score_threshold:  # Filter out low-confidence boxes
             xmin, ymin, xmax, ymax = box[:4]
             color = class_colors.get(label.item(), (255, 255, 255))  # Default to white if label is unknown
             draw.rectangle([xmin, ymin, xmax, ymax], outline=color, width=3)
             label_name = label_names.get(label.item(), "Unknown")
-            draw.text((xmin, ymin), f'{label_name}: {score:.2f}', fill=color)
+            draw.text((xmin, ymin), f'{label_name}: {score:.2f}', fill=color, font=font)
     
     # Save the image instead of displaying it
     output_image_path = "./output_image.jpg"  # Replace with desired output path
     image.save(output_image_path)
     print(f"Image saved to {output_image_path}")
 
+
 # Inference script
 if __name__ == "__main__":
     # File paths
     test_image_path = "./test_image.jpg"
-    model_path = "faster_rcnn_resnet18.pth"  
+    model_path = "faster_rcnn_resnet50.pth"  
 
     # Load the model
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -94,4 +101,3 @@ if __name__ == "__main__":
 
     # Visualize and save the results
     visualize(image, boxes, labels, scores)
-
