@@ -1,0 +1,34 @@
+How to use labelme2coco:
+
+        # import package
+        import labelme2coco
+
+        # set directory that contains labelme annotations and image files
+        labelme_folder = "tests/data/labelme_annot"
+
+        # set export dir
+        export_dir = "tests/data/"
+
+        # set train split rate
+        train_split_rate = 0.85
+
+        # set category ID start value
+        category_id_start = 1
+
+        # convert labelme annotations to coco
+        labelme2coco.convert(labelme_folder, export_dir, train_split_rate, category_id_start=category_id_start)
+
+How to run train.py:
+
+        python train.py \
+            --epoch 10 \
+            --train_image_dir /home/eo/FasterRCNN-Torchvision-FineTuning/imgs \
+            --val_image_dir /home/eo/FasterRCNN-Torchvision-FineTuning/val_imgs \
+            --train_coco_json /home/eo/FasterRCNN-Torchvision-FineTuning/annotations/DSC01113.json \
+            --val_coco_json /home/eo/FasterRCNN-Torchvision-FineTuning/val_annotations/DSC01113.json \
+            --batch_size 16 \
+            --exp_folder /home/eo/FasterRCNN-Torchvision-FineTuning
+
+How to use Tensorboard:
+
+        tensorboard --logdir=/home/eo/PCBnet-1/exp/summary/10-12-2024-15-56-45/ --port=6006
