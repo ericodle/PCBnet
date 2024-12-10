@@ -1,5 +1,5 @@
 # PCBnet
-resnet-based tool for analyzing PCBs
+machine learning tool for analyzing PCBs
 
 <!-- PROJECT LOGO -->
 <br />
