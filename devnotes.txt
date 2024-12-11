@@ -48,7 +48,7 @@ Patch coco.py in the virtual environment (better solution pending):
 run inference:
 
         python3 run_inference.py \
-        --image_folder ./imgs \
-        --annotations_file ./annotations/DSC01113.json \
-        --checkpoint ./exp/summary/11-12-2024-18-14-35/best_model.pth \
-        --image_id 0
+                --image_folder ./imgs \
+                --annotations_file ./annotations/DSC01113.json \
+                --checkpoint ./exp/summary/11-12-2024-18-14-35/best_model.pth \
+                --image_id 0
