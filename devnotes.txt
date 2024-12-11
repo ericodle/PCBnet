@@ -42,4 +42,4 @@ Patch coco.py in the virtual environment (better solution pending):
         echo "Target Directory: $TARGET_DIR"
 
         # Move the file
-        mv ./coco.py "$TARGET_DIR/coco.py"
+        cp ./coco.py "$TARGET_DIR/coco.py"
