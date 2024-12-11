@@ -27,9 +27,11 @@ If the first number is not a 3, update to Python3.
 
 ### Step 1: Download the repository
 
-Download to your computer. 
+```sh
+git clone https://github.com/ericodle/PCBnet
+```
 
-### Step 2: Create a virtual environment: 
+### Step 2: Create a virtual environment
 
 ```sh
 python3 -m venv env
@@ -48,7 +50,32 @@ source env/bin/activate
 pip3 install -r requirements.txt
   ```
 
-## Workflow
+## Prepare Training Data
+
+### Step 1: Take photos of PCBs
+
+📸 
+
+### Step 2: Label PCB Components
+
+We use [labelme](https://github.com/wkentaro/labelme) to draw boxes around our components of interest.
+
+Labelme generates .JSON annotation files of the same filename as the source image.
+
+### Step 3: Convert Annotations to COCO Format
+
+We use [labelme2coco](https://github.com/fcakyon/labelme2coco) to convert the annotations into COCO format.
+
+### Step 4: Organize Training Data
+
+Training images should be placed in a clearly-labeled folder.
+For this example, we place them in ./imgs
+
+Annotations should also be palced in a clearly-labeled folder.
+Here, we place them in ./annotations
+
+## Fine-Tune 
+
 
 
 
