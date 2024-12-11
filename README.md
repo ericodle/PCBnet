@@ -83,6 +83,8 @@ For this example, we place them in ./imgs
 Annotations should also be palced in a clearly-labeled folder.
 Here, we place them in ./annotations
 
+A similar scheme is used for validation data.
+
 ## Fine-Tune fasterrcnn_resnet50
 
 ### Step 1: Execute train.py
@@ -92,7 +94,7 @@ Below is an example command.
 Feel free to change filepaths and training parameters as needed.
 
 ```sh
-python train.py \
+python3 train.py \
     --epoch 10 \
     --train_image_dir /home/eo/FasterRCNN-Torchvision-FineTuning/imgs \
     --val_image_dir /home/eo/FasterRCNN-Torchvision-FineTuning/val_imgs \
@@ -117,6 +119,9 @@ Navigate to http://localhost:6006/ in your browser to see the graphs.
 
 ## Inference
 
+```sh
+python3 run_inference.py
+```
 
 
 
