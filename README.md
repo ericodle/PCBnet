@@ -119,8 +119,14 @@ Navigate to http://localhost:6006/ in your browser to see the graphs.
 
 ## Inference
 
+Execute run_inference.py with the appropriate paths included.
+
 ```sh
-python3 run_inference.py
+python3 run_inference.py \
+    --image_folder ./imgs \
+    --annotations_file ./annotations/DSC01113.json \
+    --checkpoint ./exp/summary/11-12-2024-18-14-35/best_model.pth \
+    --image_id 0
 ```
 
 
