@@ -32,3 +32,14 @@ How to run train.py:
 How to use Tensorboard:
 
         tensorboard --logdir=/home/eo/PCBnet-1/exp/summary/10-12-2024-15-56-45/ --port=6006
+
+
+Patch coco.py in the virtual environment (better solution pending):
+        PYTHON_VERSION=$(python -c "import sys; print(f'python{sys.version_info.major}.{sys.version_info.minor}')")
+        TARGET_DIR="./env/lib/$PYTHON_VERSION/site-packages/pycocotools/"
+
+        # Print the target directory
+        echo "Target Directory: $TARGET_DIR"
+
+        # Move the file
+        mv ./coco.py "$TARGET_DIR/coco.py"
