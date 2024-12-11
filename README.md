@@ -11,7 +11,7 @@ machine learning tool for analyzing PCBs
 
 coming soon
  
-## Prerequisite
+## Pre-requisite
 
 Install [Python3](https://www.python.org/downloads/) on your computer.
 
@@ -92,9 +92,10 @@ Here, we place them in ./annotations
 
 ## Fine-Tune fasterrcnn_resnet50
 
-### Execute train.py
+### Step 1: Execute train.py
 
 Below is an example command. 
+
 Feel free to change filepaths and training parameters as needed.
 
 ```sh
@@ -108,6 +109,17 @@ python train.py \
     --exp_folder /home/eo/FasterRCNN-Torchvision-FineTuning
 ```
 
+### Step 2: View Fine-Tuning Metrics
+
+We use tensorboard to catch potential issues with the training process (overfitting, etc.)
+
+*Be sure to correct the filepath to your specific situation*
+
+```sh
+tensorboard --logdir=./exp/summary/<your-folder>/ --port=6006
+```
+
+Navigate to http://localhost:6006/ in your browser to see the graphs.
 
 
 
