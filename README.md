@@ -11,7 +11,7 @@ machine learning tool for analyzing PCBs
 
 coming soon
  
-## Prerequisite
+## Pre-requisite
 
 Install [Python3](https://www.python.org/downloads/) on your computer.
 
@@ -49,6 +49,22 @@ source env/bin/activate
   ```sh
 pip3 install -r requirements.txt
   ```
+### Step 4: Replace coco.py with patched version
+
+I suspect labelme2coco does not do a perfect job putting the annotation data in the expected format.
+
+For now, this patched version of coco.py fixes the issue.
+
+```sh
+PYTHON_VERSION=$(python -c "import sys; print(f'python{sys.version_info.major}.{sys.version_info.minor}')")
+TARGET_DIR="./env/lib/$PYTHON_VERSION/site-packages/pycocotools/"
+
+# Print the target directory
+echo "Target Directory: $TARGET_DIR"
+
+# Move the file
+cp ./coco.py "$TARGET_DIR/coco.py"
+```
 
 ## Prepare Training Data
 
@@ -74,8 +90,36 @@ For this example, we place them in ./imgs
 Annotations should also be palced in a clearly-labeled folder.
 Here, we place them in ./annotations
 
-## Fine-Tune 
+## Fine-Tune fasterrcnn_resnet50
 
+### Step 1: Execute train.py
+
+Below is an example command. 
+
+Feel free to change filepaths and training parameters as needed.
+
+```sh
+python train.py \
+    --epoch 10 \
+    --train_image_dir /home/eo/FasterRCNN-Torchvision-FineTuning/imgs \
+    --val_image_dir /home/eo/FasterRCNN-Torchvision-FineTuning/val_imgs \
+    --train_coco_json /home/eo/FasterRCNN-Torchvision-FineTuning/annotations/DSC01113.json \
+    --val_coco_json /home/eo/FasterRCNN-Torchvision-FineTuning/val_annotations/DSC01113.json \
+    --batch_size 16 \
+    --exp_folder /home/eo/FasterRCNN-Torchvision-FineTuning
+```
+
+### Step 2: View Fine-Tuning Metrics
+
+We use tensorboard to catch potential issues with the training process (overfitting, etc.)
+
+*Be sure to correct the filepath to your specific situation*
+
+```sh
+tensorboard --logdir=./exp/summary/<your-folder>/ --port=6006
+```
+
+Navigate to http://localhost:6006/ in your browser to see the graphs.
 
 
 
