@@ -31,7 +31,7 @@ How to run train.py:
 
 How to use Tensorboard:
 
-        tensorboard --logdir=/home/eo/PCBnet-1/exp/summary/10-12-2024-15-56-45/ --port=6006
+        tensorboard --logdir=./exp/summary/<your-folder>/ --port=6006
 
 
 Patch coco.py in the virtual environment (better solution pending):
