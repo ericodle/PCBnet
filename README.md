@@ -1,11 +1,4 @@
 # PCBnet
-machine learning tool for analyzing PCBs
-
-<!-- PROJECT LOGO -->
-<br />
-<div align="left">
-
-<h3 align="center">PCB analyzer </h3>
 
 ## About this Project
 
