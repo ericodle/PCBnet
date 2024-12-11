@@ -15,7 +15,7 @@ coming soon
 
 Install [Python3](https://www.python.org/downloads/) on your computer.
 
-Enter this into your computer's command line interface (terminal, control panel, etc.) to check the version:
+Check your current version like this:
 
   ```sh
   python --version
@@ -120,6 +120,10 @@ tensorboard --logdir=./exp/summary/<your-folder>/ --port=6006
 ```
 
 Navigate to http://localhost:6006/ in your browser to see the graphs.
+
+
+## Inference
+
 
 
 
