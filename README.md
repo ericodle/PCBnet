@@ -96,12 +96,12 @@ Feel free to change filepaths and training parameters as needed.
 ```sh
 python3 train.py \
     --epoch 10 \
-    --train_image_dir /home/eo/FasterRCNN-Torchvision-FineTuning/imgs \
-    --val_image_dir /home/eo/FasterRCNN-Torchvision-FineTuning/val_imgs \
-    --train_coco_json /home/eo/FasterRCNN-Torchvision-FineTuning/annotations/DSC01113.json \
-    --val_coco_json /home/eo/FasterRCNN-Torchvision-FineTuning/val_annotations/DSC01113.json \
+    --train_image_dir ./imgs \
+    --val_image_dir ./val_imgs \
+    --train_coco_json ./annotations/DSC01113.json \
+    --val_coco_json ./val_annotations/DSC01113.json \
     --batch_size 16 \
-    --exp_folder /home/eo/FasterRCNN-Torchvision-FineTuning
+    --exp_folder ./
 ```
 
 ### Step 2: View Fine-Tuning Metrics
