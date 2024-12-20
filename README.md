@@ -130,8 +130,8 @@ Execute run_inference.py with the appropriate paths included.
 ```sh
 python3 run_inference.py \
     --image_folder ./imgs \
-    --annotations_file ./annotations/DSC01113.json \
-    --checkpoint ./exp/summary/11-12-2024-18-14-35/best_model.pth \
+    --annotations_file ./annotations/val.json \
+    --checkpoint ./exp/summary/<your-folder>/best_model.pth \
     --image_id 0
 ```
 
