@@ -106,7 +106,7 @@ python3 train.py \
     --val_image_dir ./val_imgs \
     --train_coco_json ./annotations/dataset.json \
     --val_coco_json ./val_annotations/dataset.json \
-    --batch_size 16 \
+    --batch_size 4 \
     --exp_folder ./
 ```
 
