@@ -71,11 +71,7 @@ We use [labelme](https://github.com/wkentaro/labelme) to draw boxes around our c
 
 Labelme generates .JSON annotation files of the same filename as the source image.
 
-### Step 3: Convert Annotations to COCO Format
-
-We use [labelme2coco](https://github.com/fcakyon/labelme2coco) to convert the annotations into COCO format.
-
-### Step 4: Organize Training Data
+### Step 3: Organize Training Data
 
 Training images should be placed in a clearly-labeled folder.
 For this example, we place them in ./imgs
@@ -84,6 +80,16 @@ Annotations should also be palced in a clearly-labeled folder.
 Here, we place them in ./annotations
 
 A similar scheme is used for validation data.
+
+### Step 4: Convert Annotations to COCO Format
+
+We use [labelme2coco](https://github.com/fcakyon/labelme2coco) to convert the annotations into COCO format.
+
+```
+pip3 install labelme2coco
+python3 coco_convert.py ./annotations
+python3 coco_convert.py ./val_annotations
+```
 
 ## Fine-Tune fasterrcnn_resnet50
 
