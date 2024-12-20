@@ -104,9 +104,9 @@ python3 train.py \
     --epoch 10 \
     --train_image_dir ./imgs \
     --val_image_dir ./val_imgs \
-    --train_coco_json ./annotations/dataset.json \
-    --val_coco_json ./val_annotations/dataset.json \
-    --batch_size 16 \
+    --train_coco_json ./annotations/train.json \
+    --val_coco_json ./val_annotations/train.json \
+    --batch_size 4 \
     --exp_folder ./
 ```
 
@@ -130,8 +130,8 @@ Execute run_inference.py with the appropriate paths included.
 ```sh
 python3 run_inference.py \
     --image_folder ./imgs \
-    --annotations_file ./annotations/DSC01113.json \
-    --checkpoint ./exp/summary/11-12-2024-18-14-35/best_model.pth \
+    --annotations_file ./annotations/val.json \
+    --checkpoint ./exp/summary/<your-folder>/best_model.pth \
     --image_id 0
 ```
 
