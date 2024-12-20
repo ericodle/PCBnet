@@ -7,7 +7,7 @@ def main():
     # Parse arguments
     parser = argparse.ArgumentParser(description="Convert LabelMe annotations to COCO format.")
     parser.add_argument("annotation_dir", type=str, help="Path to the directory containing LabelMe annotations and images.")
-    parser.add_argument("--train_split_rate", type=float, default=0.85, help="Train split rate (default: 0.85).")
+    parser.add_argument("--train_split_rate", type=float, default=1, help="Train split rate (default: 0.85).")
     parser.add_argument("--category_id_start", type=int, default=1, help="Starting value for category IDs (default: 1).")
 
     args = parser.parse_args()
