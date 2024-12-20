@@ -104,8 +104,8 @@ python3 train.py \
     --epoch 10 \
     --train_image_dir ./imgs \
     --val_image_dir ./val_imgs \
-    --train_coco_json ./annotations/dataset.json \
-    --val_coco_json ./val_annotations/dataset.json \
+    --train_coco_json ./annotations/train.json \
+    --val_coco_json ./val_annotations/train.json \
     --batch_size 4 \
     --exp_folder ./
 ```
