@@ -49,7 +49,7 @@ I suspect labelme2coco does not do a perfect job putting the annotation data in 
 For now, this patched version of coco.py fixes the issue.
 
 ```sh
-PYTHON_VERSION=$(python -c "import sys; print(f'python{sys.version_info.major}.{sys.version_info.minor}')")
+PYTHON_VERSION=$(python3 -c "import sys; print(f'python{sys.version_info.major}.{sys.version_info.minor}')")
 TARGET_DIR="./env/lib/$PYTHON_VERSION/site-packages/pycocotools/"
 
 # Print the target directory
@@ -104,8 +104,8 @@ python3 train.py \
     --epoch 10 \
     --train_image_dir ./imgs \
     --val_image_dir ./val_imgs \
-    --train_coco_json ./annotations/DSC01113.json \
-    --val_coco_json ./val_annotations/DSC01113.json \
+    --train_coco_json ./annotations/ \
+    --val_coco_json ./val_annotations/ \
     --batch_size 16 \
     --exp_folder ./
 ```
