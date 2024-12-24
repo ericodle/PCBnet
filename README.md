@@ -88,7 +88,7 @@ We use [labelme2coco](https://github.com/fcakyon/labelme2coco) to convert the an
 ```
 pip3 install labelme2coco
 python3 coco_convert.py ./annotations
-python3 coco_convert.py ./val_annotations
+python3 coco_convert.py ./test_annotations
 ```
 
 ## Fine-Tune fasterrcnn_resnet50
