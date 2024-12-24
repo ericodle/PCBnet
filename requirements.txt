@@ -48,7 +48,6 @@ dataclasses==0.6
 dbus-python==1.2.18
 debugpy==1.8.1
 decorator==5.1.1
-DeepLoc2 @ file:///home/koc/Trinity_programs/deeploc2_package
 defer==1.0.6
 defusedxml==0.7.1
 DendroPy==5.0.1
