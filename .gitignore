@@ -1,7 +1,7 @@
 env/
 exp/
 __pycache__/
-annotations/
-imgs/
+train_labels/
+train_imgs/
 val_annotations/
 val_imgs/
