@@ -73,13 +73,13 @@ Labelme generates .JSON annotation files of the same filename as the source imag
 
 ### Step 3: Organize Training Data
 
-Training images should be placed in a clearly-labeled folder.
-For this example, we place them in ./imgs
+Training images should be placed in their own folder.
+For this example, we place them in `./train_imgs`
 
-Annotations should also be placed in a clearly-labeled folder.
-Here, we place them in ./annotations
+Label annotations should also be placed in their own folder.
+Here, we place them in `./train_labels`
 
-A similar scheme is used for validation data.
+For validation images, create similar folders for `./val_imgs` and `./val_labels`
 
 ### Step 4: Convert Annotations to COCO Format
 
@@ -87,8 +87,8 @@ We use [labelme2coco](https://github.com/fcakyon/labelme2coco) to convert the an
 
 ```
 pip3 install labelme2coco
-python3 coco_convert.py ./annotations
-python3 coco_convert.py ./val_annotations
+python3 coco_convert.py ./train_labels
+python3 coco_convert.py ./val_labels
 ```
 
 ## Fine-Tune fasterrcnn_resnet50

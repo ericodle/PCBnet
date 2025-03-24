@@ -3,5 +3,5 @@ exp/
 __pycache__/
 train_labels/
 train_imgs/
-val_annotations/
+val_labels/
 val_imgs/
