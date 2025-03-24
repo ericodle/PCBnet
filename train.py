@@ -134,10 +134,10 @@ def train(
 
 @dataclass
 class DatasetPaths:
-    train_image_dir: str = r"D:\Work\work\FasterRCNN-Torchvision-FineTuning\dataset\AquariumDataset\train\images"
-    val_image_dir: str = r"D:\Work\work\FasterRCNN-Torchvision-FineTuning\dataset\AquariumDataset\valid\images"
-    train_coco_json: str = r"D:\Work\work\FasterRCNN-Torchvision-FineTuning\dataset\AquariumDataset\train\_annotations.coco_neg.json"
-    val_coco_json: str = r"D:\Work\work\FasterRCNN-Torchvision-FineTuning\dataset\AquariumDataset\valid\_annotations.coco.json"
+    train_image_dir: str = r"./train_image_dir"
+    val_image_dir: str = r"./val_image_dir"
+    train_coco_json: str = r"./train_coco_json"
+    val_coco_json: str = r"./val_coco_json"
 
 @dataclass
 class TrainingConfig:
