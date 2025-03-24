@@ -76,7 +76,7 @@ Labelme generates .JSON annotation files of the same filename as the source imag
 Training images should be placed in a clearly-labeled folder.
 For this example, we place them in ./imgs
 
-Annotations should also be palced in a clearly-labeled folder.
+Annotations should also be placed in a clearly-labeled folder.
 Here, we place them in ./annotations
 
 A similar scheme is used for validation data.
@@ -88,7 +88,7 @@ We use [labelme2coco](https://github.com/fcakyon/labelme2coco) to convert the an
 ```
 pip3 install labelme2coco
 python3 coco_convert.py ./annotations
-python3 coco_convert.py ./test_annotations
+python3 coco_convert.py ./val_annotations
 ```
 
 ## Fine-Tune fasterrcnn_resnet50
