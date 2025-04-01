@@ -116,9 +116,7 @@ tensorboard --logdir=./exp/summary/<your-folder>/ --port=6006
 Navigate to http://localhost:6006/ in your browser to see the graphs.
 
 
-## Inference
-
-Execute run_inference.py with the appropriate paths included.
+## Train
 
 ```sh
 python train.py \
@@ -131,21 +129,12 @@ python train.py \
         --exp_folder ./
 ```
 
+## Inference
 
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+```sh
+python3 run_inference.py \
+        --image_folder ./test_imgs \
+        --annotations_file ./test_imgs/test.json \
+        --checkpoint ./exp/summary/01-04-2025-16-48-15/best_model.pth \
+        --image_id 0
+```
