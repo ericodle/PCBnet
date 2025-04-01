@@ -73,41 +73,34 @@ Labelme generates .JSON annotation files of the same filename as the source imag
 
 ### Step 3: Organize Training Data
 
-Training images should be placed in a clearly-labeled folder.
-For this example, we place them in ./imgs
+Training images should be placed in their own folder.
+For this example, we place them in `./train_imgs`
 
-Annotations should also be palced in a clearly-labeled folder.
-Here, we place them in ./annotations
+Label annotations should also be placed in their own folder.
+Here, we place them in `./train_labels`
 
-A similar scheme is used for validation data.
+For validation images, create similar folders for `./val_imgs` and `./val_labels`
 
 ### Step 4: Convert Annotations to COCO Format
 
 We use [labelme2coco](https://github.com/fcakyon/labelme2coco) to convert the annotations into COCO format.
 
-```
+```sh
 pip3 install labelme2coco
-python3 coco_convert.py ./annotations
-python3 coco_convert.py ./test_annotations
+```
+
+and then 
+
+```sh
+python3 coco_convert.py ./train_labels
+python3 coco_convert.py ./val_labels
 ```
 
 ## Fine-Tune fasterrcnn_resnet50
 
 ### Step 1: Execute train.py
-
-Below is an example command. 
-
-Feel free to change filepaths and training parameters as needed.
-
 ```sh
-python3 train.py \
-    --epoch 10 \
-    --train_image_dir ./imgs \
-    --val_image_dir ./val_imgs \
-    --train_coco_json ./annotations/train.json \
-    --val_coco_json ./val_annotations/train.json \
-    --batch_size 4 \
-    --exp_folder ./
+python3 train.py
 ```
 
 ### Step 2: View Fine-Tuning Metrics
@@ -128,11 +121,14 @@ Navigate to http://localhost:6006/ in your browser to see the graphs.
 Execute run_inference.py with the appropriate paths included.
 
 ```sh
-python3 run_inference.py \
-    --image_folder ./imgs \
-    --annotations_file ./annotations/val.json \
-    --checkpoint ./exp/summary/<your-folder>/best_model.pth \
-    --image_id 0
+python train.py \
+        --epoch 10 \
+        --train_image_dir ./train_imgs \
+        --val_image_dir ./val_imgs \
+        --train_coco_json ./train_imgs/train.json \
+        --val_coco_json ./val_imgs/val.json \
+        --batch_size 16 \
+        --exp_folder ./
 ```
 
 
