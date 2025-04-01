@@ -124,9 +124,9 @@ Execute run_inference.py with the appropriate paths included.
 python train.py \
         --epoch 10 \
         --train_image_dir ./train_imgs \
-        --val_image_dir ./val_imgs \
+        --val_image_dir ./train_imgs \
         --train_coco_json ./train_imgs/train.json \
-        --val_coco_json ./val_imgs/val.json \
+        --val_coco_json ./train_imgs/val.json \
         --batch_size 16 \
         --exp_folder ./
 ```
