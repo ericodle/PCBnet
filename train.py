@@ -94,15 +94,9 @@ def train(
         
         sleep(0.1)
 
-        if (epoch % val_eval_freq == 0) and epoch != 0:  # Do evaluation of validation set
-            eval_result = evaluate_model(image_dir=val_dataset.image_folder,
-                                         gt_ann_file=val_dataset.annotations_file,
-                                         model_weight=save_best_model.model_save_path)
+        if (epoch % val_eval_freq == 0) and epoch != 0:  
             
             sleep(0.1)
-            
-            writer.add_scalar("Val/AP_50_95", eval_result['AP_50_95'], epoch + 1)
-            writer.add_scalar("Val/AP_50", eval_result['AP_50'], epoch + 1)
         
         else:
             writer, val_epoch_loss = val_one_epoch(

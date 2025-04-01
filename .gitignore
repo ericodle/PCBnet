@@ -1,6 +1,3 @@
 env/
 exp/
 __pycache__/
-train_imgs/
-val_imgs/
-test_dect.json
