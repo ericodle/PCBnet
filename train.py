@@ -1,5 +1,6 @@
 from tqdm import tqdm
 from time import sleep
+import matplotlib.pyplot as plt
 from utils.dataset import CocoDataset
 from utils.model import create_model
 from utils.training_utils import SaveBestModel, train_one_epoch, val_one_epoch, get_datasets
@@ -46,20 +47,33 @@ def train(train_dataset, val_dataset, epochs, batch_size, exp_folder, val_eval_f
     optimizer.add_param_group({"params": pg2})
 
     save_best_model = SaveBestModel(output_dir=exp_folder)
+    train_losses, val_losses = [], []
 
     for epoch in range(epochs):
         model, optimizer, writer, epoch_loss = train_one_epoch(model, train_dl, optimizer, writer, epoch + 1, epochs, device)
+        train_losses.append(epoch_loss)
         sleep(0.1)
 
         if epoch % val_eval_freq == 0 and epoch != 0:
             sleep(0.1)
         else:
             writer, val_epoch_loss = val_one_epoch(model, val_dl, writer, epoch + 1, epochs, device, log=True)
+            val_losses.append(val_epoch_loss)
             sleep(0.1)
             save_best_model(val_epoch_loss, epoch, model, optimizer)
 
     _, _ = val_one_epoch(model, val_dl, writer, epochs, epochs, device, log=False)
     writer.add_hparams({"epochs": epochs, "batch_size": batch_size}, {"Train/total_loss": epoch_loss, "Val/total_loss": val_epoch_loss})
+
+    plt.figure(figsize=(10, 5))
+    plt.plot(range(1, len(train_losses) + 1), train_losses, label='Train Loss')
+    plt.plot(range(1, len(val_losses) + 1), val_losses, label='Validation Loss')
+    plt.xlabel("Epochs")
+    plt.ylabel("Loss")
+    plt.legend()
+    plt.title("Training and Validation Loss")
+    plt.savefig(os.path.join(exp_folder, "loss_plot.png"), dpi=400)
+    plt.close()
 
 if __name__ == "__main__":
     parser = ArgumentParser()
