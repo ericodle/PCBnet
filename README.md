@@ -66,7 +66,7 @@ python train.py \
         --val_image_dir ./train_imgs \
         --train_coco_json ./train_imgs/train.json \
         --val_coco_json ./train_imgs/val.json \
-        --batch_size 16 \
+        --batch_size 4 \
         --exp_folder ./
 ```
 
@@ -76,6 +76,6 @@ python train.py \
 python3 run_inference.py \
         --image_folder ./test_imgs \
         --annotations_file ./test_imgs/test.json \
-        --checkpoint ./exp/summary/01-04-2025-16-48-15/best_model.pth \
+        --checkpoint ./summary/<your-output-file>/best_model.pth \
         --image_id 0
 ```
