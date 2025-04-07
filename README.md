@@ -73,10 +73,9 @@ python train.py \
 ## Inference
 
 ```sh
-python3 run_inference.py \
-        --image_folder ./test_imgs \
-        --annotations_file ./test_imgs/test.json \
-        --checkpoint ./summary/<your-output-file>/best_model.pth \
-        --image_id 0 \
-        --save_path ./output/
+python run_inference.py \
+  --image_folder ./test_imgs \
+  --annotations_file ./test_imgs/test.json \
+  --checkpoint ./summary/07-04-2025-19-48-05/best_model.pth \
+  --output_folder ./outputs/inference_results
 ```

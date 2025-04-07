@@ -1,5 +1,5 @@
 env/
 exp/
 summary/
-output/
+outputs/
 __pycache__/

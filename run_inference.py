@@ -26,7 +26,7 @@ def display_gt_pred(
     fig, ax = plt.subplots(1, figsize=(12, 8))
     ax.imshow(image)
 
-    # Draw ground truth boxes (green)
+    # Draw GT boxes (green)
     for bbox, cls in zip(gt_boxes, gt_class):
         x0, y0, x1, y1 = bbox
         width, height = x1 - x0, y1 - y0
@@ -46,88 +46,97 @@ def display_gt_pred(
     ax.axis('off')
 
     if save_path:
+        os.makedirs(os.path.dirname(save_path), exist_ok=True)
         plt.savefig(save_path, bbox_inches='tight')
-        print(f"Saved annotated image to: {save_path}")
+        print(f"Saved: {save_path}")
     else:
         plt.show()
 
+    plt.close(fig)
+
 
 def main(args):
-    # Load dataset
+    # Load dataset and COCO annotations
     train_ds = CocoDataset(
         image_folder=args.image_folder,
         annotations_file=args.annotations_file,
         height=4000,
         width=6000
     )
-
     classnames = train_ds.get_classnames()
-    print("Detected Classes:", classnames)
+    print(f"Detected classes: {classnames}")
+
+    cocoGt = COCO(args.annotations_file)
+    img_ids = cocoGt.getImgIds()
+    print(f"Found {len(img_ids)} annotated images.")
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    # Load model
     model = InferFasterRCNN(
         num_classes=train_ds.get_total_classes_count() + 1,
         classnames=classnames
     )
     model.load_model(checkpoint=args.checkpoint, device=device)
 
-    # Load image info and annotations from COCO
-    cocoGt = COCO(args.annotations_file)
-    imgIds = cocoGt.getImgIds()
-    print(f"Total images in dataset: {len(imgIds)}")
+    for img_id in img_ids:
+        img_info = cocoGt.loadImgs(img_id)[0]
+        image_path = os.path.join(args.image_folder, img_info['file_name'])
 
-    img_info = cocoGt.loadImgs(imgIds[args.image_id])[0]
-    image_path = os.path.join(args.image_folder, img_info['file_name'])
-    annIds = cocoGt.getAnnIds(imgIds=img_info['id'])
-    ann_info = cocoGt.loadAnns(annIds)
+        if not os.path.exists(image_path):
+            print(f"Skipping missing image: {image_path}")
+            continue
 
-    # Prepare image for inference
-    transform_info = CocoDataset.transform_image_for_inference(
-        image_path,
-        width=640,
-        height=640
-    )
+        ann_ids = cocoGt.getAnnIds(imgIds=img_info['id'])
+        ann_info = cocoGt.loadAnns(ann_ids)
 
-    # Run inference
-    result = model.infer_image(transform_info=transform_info, visualize=False)
+        # Prepare image for inference
+        transform_info = CocoDataset.transform_image_for_inference(
+            image_path,
+            width=640,
+            height=640
+        )
 
-    # Ground truth boxes and class labels
-    gts_cls = [ann['category_id'] for ann in ann_info]
-    gts_bbox = [[
-        ann['bbox'][0],
-        ann['bbox'][1],
-        ann['bbox'][0] + ann['bbox'][2],
-        ann['bbox'][1] + ann['bbox'][3]
-    ] for ann in ann_info]
+        result = model.infer_image(transform_info=transform_info, visualize=False)
 
-    # Prediction results
-    pred_boxes = result['unscaled_boxes']
-    pred_classes = result['pred_classes']
-    pred_scores = result['scores']
+        # Ground truths
+        gts_cls = [ann['category_id'] for ann in ann_info]
+        gts_bbox = [[
+            ann['bbox'][0],
+            ann['bbox'][1],
+            ann['bbox'][0] + ann['bbox'][2],
+            ann['bbox'][1] + ann['bbox'][3]
+        ] for ann in ann_info]
 
-    # Visualize predictions
-    display_gt_pred(
-        image_path=image_path,
-        gt_boxes=gts_bbox,
-        gt_class=gts_cls,
-        pred_boxes=pred_boxes,
-        pred_class=pred_classes,
-        pred_scores=pred_scores,
-        classnames=classnames,
-        box_format='xyxy',
-        save_path=args.save_path
-    )
+        # Predictions
+        pred_boxes = result['unscaled_boxes']
+        pred_classes = result['pred_classes']
+        pred_scores = result['scores']
+
+        # Output path
+        save_path = None
+        if args.output_folder:
+            output_filename = os.path.splitext(img_info['file_name'])[0] + "_pred.png"
+            save_path = os.path.join(args.output_folder, output_filename)
+
+        display_gt_pred(
+            image_path=image_path,
+            gt_boxes=gts_bbox,
+            gt_class=gts_cls,
+            pred_boxes=pred_boxes,
+            pred_class=pred_classes,
+            pred_scores=pred_scores,
+            classnames=classnames,
+            box_format='xyxy',
+            save_path=save_path
+        )
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run inference on a COCO dataset image.")
-    parser.add_argument("--image_folder", type=str, required=True, help="Path to the folder containing images.")
-    parser.add_argument("--annotations_file", type=str, required=True, help="Path to the COCO annotations file.")
+    parser = argparse.ArgumentParser(description="Run inference on a folder of COCO images.")
+    parser.add_argument("--image_folder", type=str, required=True, help="Folder containing images.")
+    parser.add_argument("--annotations_file", type=str, required=True, help="Path to the COCO annotations JSON.")
     parser.add_argument("--checkpoint", type=str, required=True, help="Path to the model checkpoint.")
-    parser.add_argument("--image_id", type=int, default=0, help="ID of the image to run inference on.")
-    parser.add_argument("--save_path", type=str, default=None, help="Path to save output image (optional).")
+    parser.add_argument("--output_folder", type=str, default=None, help="Optional folder to save visualized results.")
 
     args = parser.parse_args()
     main(args)
