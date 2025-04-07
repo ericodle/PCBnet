@@ -77,6 +77,6 @@ python3 run_inference.py \
         --image_folder ./test_imgs \
         --annotations_file ./test_imgs/test.json \
         --checkpoint ./summary/<your-output-file>/best_model.pth \
-        --image_id 0
-        --save_path /output/
+        --image_id 0 \
+        --save_path ./output/
 ```
